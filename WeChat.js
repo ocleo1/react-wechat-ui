@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Me from './Me';
-import You from './You';
+import ChatBubble from './ChatBubble';
 
 export default class WeChat extends React.Component {
   constructor(props) {
@@ -19,11 +18,14 @@ export default class WeChat extends React.Component {
         }}>
         {
           this.props.data.map((item, index) => {
-						if (item.role === 0) {
-							return <Me chatContent={item.content} key={`me${index}`}/>
-						} else{
-							return <You chatContent={item.content} key={`you${index}`}/>
-						}
+            return (
+              <ChatBubble
+                key={index}
+                role={item.role}
+                name={item.name}
+                avatar={item.avatar}
+                content={item.content} />
+            );
           })
         }
       </div>
