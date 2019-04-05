@@ -10,7 +10,13 @@ export default class ChatBubble extends React.Component {
   }
 
   renderTag() {
-    return <div style={Style.tag}>{this.props.content}</div>;
+    return (
+      <div style={Style.tag}>
+        <span style={Style.tagText}>
+          {this.props.content}
+        </span>
+      </div>
+    );
   }
 
   renderRole() {
@@ -28,7 +34,7 @@ export default class ChatBubble extends React.Component {
         <div style={trangleStyle}></div>
         { isMe ? avatar : bubble }
       </div>
-    )
+    );
   }
 
   render() {
@@ -53,21 +59,21 @@ ChatBubble.defaultProps = {
 }
 
 const Style = {
+  tag: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '20px 0 20px 0'
+  },
   me: {
     display: 'flex',
     justifyContent: 'flex-end',
-    width: 470,
-    height: 'auto',
-    margin: '10px 0 10px 0',
-    paddingRight: 10
+    margin: '20px 10px 20px 0'
   },
   you: {
     display: 'flex',
     justifyContent: 'flex-start',
-    width: 470,
-    height: 'auto',
-    margin: '10px 0 10px 0',
-    paddingLeft: 10
+    margin: '20px 0 20px 10px'
   },
   triangleRight: {
     position: 'relative',
@@ -88,6 +94,12 @@ const Style = {
     borderRight: '10px solid white',
     borderBottom: '10px solid transparent',
     borderLeft: '10px solid transparent'
+  },
+  tagText: {
+    color: '#B1B1B1',
+    backgroundColor: '#3F3F3F',
+    border: '1px solid #3F3F3F',
+    padding: '5px 10px 5px 10px'
   },
   myText: {
     maxWidth: 250,
