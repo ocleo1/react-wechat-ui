@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ChatBubble from './ChatBubble';
+import GroupChatBubble from './GroupChatBubble';
 
 export default class WeChat extends React.Component {
   constructor(props) {
@@ -9,6 +10,8 @@ export default class WeChat extends React.Component {
   }
 
   render() {
+    const Bubble = this.props.isGroupChat ? GroupChatBubble : ChatBubble;
+
     return (
       <div style={{
           width: this.props.width,
@@ -19,7 +22,7 @@ export default class WeChat extends React.Component {
         {
           this.props.data.map((item, index) => {
             return (
-              <ChatBubble
+              <Bubble
                 key={index}
                 role={item.role}
                 name={item.name}
