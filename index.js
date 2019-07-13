@@ -1,3 +1,3 @@
-import WeChat from './WeChat';
+import WeChat from './src/WeChat';
 
 export default WeChat;

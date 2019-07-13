@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import WeChat from '../WeChat';
+import WeChat from '../index';
 
 class Example extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Example extends React.Component {
           { role: -1, content: dateTime },
           { role: 1, name: 'Jerry', avatar: 'jerry.jpg', content: 'I am here~~~' }
         ]}
-        displayName={false} />
+        displayName={true} />
     );
   }
 }
