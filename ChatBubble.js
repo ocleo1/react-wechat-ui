@@ -29,13 +29,14 @@ export default class ChatBubble extends React.Component {
     const textStyle = isMe ? Style.myText : Style.yourText;
 
     const avatar = <img width={50} height={50} src={data.avatar} />;
+    const name = <div style={nameStyle}>{data.name}</div>;
     const content = <div style={textStyle}>{data.content}</div>;
 
     return (
       <div style={roleStyle}>
         { isMe ? null : avatar }
         <div style={chatStyle}>
-          <div style={nameStyle}>{data.name}</div>
+          { this.props.displayName ? name : null }
           <div style={bubbleStyle}>
             { isMe ? content : null }
             <div style={trangleStyle}></div>
@@ -63,7 +64,12 @@ ChatBubble.propTypes = {
     content: PropTypes.string,
     avatar: PropTypes.string,
     name: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  displayName: PropTypes.bool
+}
+
+ChatBubble.defaultProps = {
+  displayName: false
 }
 
 const Style = {

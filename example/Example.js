@@ -20,7 +20,8 @@ class Example extends React.Component {
           { role: 0, name: 'Tom', avatar: 'tom.jpg', content: 'Where is Jerry?' },
           { role: -1, content: dateTime },
           { role: 1, name: 'Jerry', avatar: 'jerry.jpg', content: 'I am here~~~' }
-        ]}/>
+        ]}
+        displayName={false} />
     );
   }
 }

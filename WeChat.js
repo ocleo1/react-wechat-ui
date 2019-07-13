@@ -21,7 +21,8 @@ export default class WeChat extends React.Component {
             return (
               <ChatBubble
                 key={index}
-                data={item} />
+                data={item}
+                displayName={this.props.displayName} />
             );
           })
         }
@@ -33,5 +34,10 @@ export default class WeChat extends React.Component {
 WeChat.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  displayName: PropTypes.bool
+}
+
+WeChat.defaultProps = {
+  displayName: false
 }
