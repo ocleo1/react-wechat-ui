@@ -21,18 +21,28 @@ export default class ChatBubble extends React.Component {
 
   renderRole() {
     const isMe = this.props.role == ME;
-    const style = isMe ? Style.me : Style.you;
-    const textStyle = isMe ? Style.myText : Style.yourText;
+    const roleStyle = isMe ? Style.me : Style.you;
+    const chatStyle = isMe ? Style.myChat : Style.yourChat;
+    const nameStyle = isMe ? Style.myName : Style.yourName;
+    const bubbleStyle = isMe ? Style.myBubble : Style.yourBubble;
     const trangleStyle = isMe ? Style.triangleRight : Style.triangleLeft;
+    const textStyle = isMe ? Style.myText : Style.yourText;
 
     const avatar = <img width={50} height={50} src={this.props.avatar} />;
-    const bubble = <span style={textStyle}>{this.props.content}</span>;
+    const content = <div style={textStyle}>{this.props.content}</div>;
 
     return (
-      <div style={style}>
-        { isMe ? bubble : avatar }
-        <div style={trangleStyle}></div>
-        { isMe ? avatar : bubble }
+      <div style={roleStyle}>
+        { isMe ? null : avatar }
+        <div style={chatStyle}>
+          <div style={nameStyle}>{this.props.name}</div>
+          <div style={bubbleStyle}>
+            { isMe ? content : null }
+            <div style={trangleStyle}></div>
+            { isMe ? null : content }
+          </div>
+        </div>
+        { isMe ? avatar : null }
       </div>
     );
   }
@@ -75,6 +85,16 @@ const Style = {
     justifyContent: 'flex-start',
     margin: '20px 0 20px 10px'
   },
+  myChat :{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end'
+  },
+  yourChat: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start'
+  },
   triangleRight: {
     position: 'relative',
     top: 10,
@@ -94,6 +114,22 @@ const Style = {
     borderRight: '10px solid white',
     borderBottom: '10px solid transparent',
     borderLeft: '10px solid transparent'
+  },
+  myName: {
+    color: '#616161',
+    margin: '0 20px 5px 0'
+  },
+  yourName: {
+    color: '#616161',
+    margin: '0 0 5px 20px'
+  },
+  myBubble: {
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
+  yourBubble: {
+    display: 'flex',
+    justifyContent: 'flex-start'
   },
   tagText: {
     color: '#B1B1B1',
