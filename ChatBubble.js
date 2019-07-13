@@ -9,18 +9,18 @@ export default class ChatBubble extends React.Component {
     super(props);
   }
 
-  renderTag() {
+  renderTag(data) {
     return (
       <div style={Style.tag}>
         <span style={Style.tagText}>
-          {this.props.content}
+          {data.content}
         </span>
       </div>
     );
   }
 
-  renderRole() {
-    const isMe = this.props.role == ME;
+  renderRole(data) {
+    const isMe = data.role === ME;
     const roleStyle = isMe ? Style.me : Style.you;
     const chatStyle = isMe ? Style.myChat : Style.yourChat;
     const nameStyle = isMe ? Style.myName : Style.yourName;
@@ -28,14 +28,14 @@ export default class ChatBubble extends React.Component {
     const trangleStyle = isMe ? Style.triangleRight : Style.triangleLeft;
     const textStyle = isMe ? Style.myText : Style.yourText;
 
-    const avatar = <img width={50} height={50} src={this.props.avatar} />;
-    const content = <div style={textStyle}>{this.props.content}</div>;
+    const avatar = <img width={50} height={50} src={data.avatar} />;
+    const content = <div style={textStyle}>{data.content}</div>;
 
     return (
       <div style={roleStyle}>
         { isMe ? null : avatar }
         <div style={chatStyle}>
-          <div style={nameStyle}>{this.props.name}</div>
+          <div style={nameStyle}>{data.name}</div>
           <div style={bubbleStyle}>
             { isMe ? content : null }
             <div style={trangleStyle}></div>
@@ -48,40 +48,41 @@ export default class ChatBubble extends React.Component {
   }
 
   render() {
-    const component = this.props.role == TAG ?
-      this.renderTag() :
-      this.renderRole();
+    const { data } = this.props;
+    const component = data.role === TAG ?
+      this.renderTag(data) :
+      this.renderRole(data);
 
     return component;
   }
 }
 
 ChatBubble.propTypes = {
-  role: PropTypes.number.isRequired,
-  content: PropTypes.string.isRequired,
-  avatar: PropTypes.string,
-  name: PropTypes.string,
-}
-
-ChatBubble.defaultProps = {
-  role: 0,
-  content: ''
+  data: PropTypes.shape({
+    role: PropTypes.number,
+    content: PropTypes.string,
+    avatar: PropTypes.string,
+    name: PropTypes.string
+  }).isRequired
 }
 
 const Style = {
   tag: {
     display: 'flex',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     margin: '20px 0 20px 0'
   },
   me: {
     display: 'flex',
+    flex: 1,
     justifyContent: 'flex-end',
     margin: '20px 10px 20px 0'
   },
   you: {
     display: 'flex',
+    flex: 1,
     justifyContent: 'flex-start',
     margin: '20px 0 20px 10px'
   },
@@ -153,4 +154,4 @@ const Style = {
     overflowWrap: 'break-word',
     wordWrap: 'break-word'
   }
-}
+};
