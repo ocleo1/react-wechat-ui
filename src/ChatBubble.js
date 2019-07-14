@@ -28,7 +28,7 @@ export default class ChatBubble extends React.Component {
     const trangleStyle = isMe ? Style.triangleRight : Style.triangleLeft;
     const textStyle = isMe ? Style.myText : Style.yourText;
 
-    const avatar = <img width={50} height={50} src={data.avatar} />;
+    const avatar = <img width={50} height={50} src={data.avatar || '/default.jpg'} />;
     const name = <div style={nameStyle}>{data.name}</div>;
     const content = <div style={textStyle}>{data.content}</div>;
 
